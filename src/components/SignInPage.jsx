@@ -1,6 +1,6 @@
 import { auth, signInWithEmailAndPassword } from "../firebase";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -14,8 +14,8 @@ export default function SignInPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/dashboard");
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
@@ -25,7 +25,7 @@ export default function SignInPage() {
         className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat "
         style={{
           backgroundImage:
-            "url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F1567665.png&f=1&nofb=1&ipt=f7f3696a41a307da41fdd458c7794a490b03ea1901cfa959bae8be827ad8d307&ipo=images')",
+            "url('https://c.tenor.com/SOIKID3WrNUAAAAd/tenor.gif')",
         }}
       >
         <div className="bg-gray-200 p-1 rounded-lg shadow-lg w-96 drop-shadow-2xl">
@@ -54,6 +54,7 @@ export default function SignInPage() {
                       id="email"
                       name="email"
                       type="email"
+                      value={email}
                       required
                       autoComplete="email"
                       className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6"
@@ -70,12 +71,12 @@ export default function SignInPage() {
                       Password
                     </label>
                     <div className="text-sm">
-                      <a
-                        href="#"
+                      <Link
+                        to="/forgotPassword"
                         className="font-semibold text-blue-500 hover:text-blue-700"
                       >
                         Forgot password?
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div className="mt-2">
@@ -83,6 +84,7 @@ export default function SignInPage() {
                       id="password"
                       name="password"
                       type="password"
+                      value={password}
                       required
                       autoComplete="current-password"
                       className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-500 sm:text-sm/6"
@@ -94,7 +96,7 @@ export default function SignInPage() {
                 <div>
                   <button
                     type="submit"
-                    className="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer"
+                    className="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 cursor-pointer"
                   >
                     Sign in
                   </button>
@@ -102,12 +104,12 @@ export default function SignInPage() {
               </form>
               <p className="mt-10 text-center text-sm/6 text-black">
                 Not a member?{" "}
-                <a
-                  href="/newUser"
+                <Link
+                  to="/newUser"
                   className="font-semibold text-blue-500 hover:text-blue-700"
                 >
                   Create an account.
-                </a>
+                </Link>
               </p>
             </div>
           </div>
